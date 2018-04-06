@@ -1,0 +1,60 @@
+digraph fifth_crusade {
+
+  # Colours so far are:
+  # - red = player character
+  # - blue = NPC cainite
+  # - grey = mortal
+
+  graph [splines=true];
+
+  # Concord of Ashes
+  subgraph cluster_concord_ashes {
+    veceslav     [label="Veceslav", color="red"];
+    svennin      [label="Svennin",  color="red"];
+    iulia        [label="Iulia",    color="red"];
+    maude        [label="Maude",    color="red"];
+    adelbert     [label="Adelbert", color="red"];
+  };
+
+  # Ashen Band
+  subgraph cluster_ashen_band {
+    kelemen      [label="Kelemen",  color="red"];
+    ulrich       [label="Ulrich",   color="red"];
+    marius       [label="Marius",   color="red"];
+    saga         [label="Saga",     color="red"];
+    helena       [label="Helena",   color="red"];
+    berengar     [label="Berengar", color="red"];
+  }
+
+  veceslav -> kelemen  [label="sired"];
+  svennin  -> ulrich   [label="mentor"];
+  iulia    -> marius   [label="sired"];
+  maude    -> saga     [label="mentor"];
+  adelbert -> berengar [label="mentor"];
+  "TBA"    -> helena;
+
+  jurgen       [label="Jurgen von Verden",  color="blue"];
+  rustovich    [label="Vladimir Rustovich", color="blue"];
+
+  # Fifth Crusade
+  subgraph cluster_fifth_crusade {
+    duke_austria [label="Duke Leopold of Austria", color="grey"];
+    duke_merania [label="Duke Otto of Merania",    color="grey"];
+    heinrich_v_a [label="Heinrich von Achern",     color="blue"];
+    kara_l       [label="Kara Lupescu",            color="blue"];
+    king_hungary [label="King Andras of Hungary",  color="grey"];
+    konrad_v_b   [label="Konrad von Babenberg",    color="blue"];
+    unknown      [label="???",                     color="blue"];
+    {rank=same; king_hungary duke_austria duke_merania}
+  }
+
+  rustovich    -> kara_l       [label="sired"];
+  jurgen       -> heinrich_v_a [label="sired"];
+
+  kara_l       -> king_hungary [label="influences", style=dashed];
+  heinrich_v_a -> king_hungary [label="influences", style=dashed];
+  konrad_v_b   -> duke_austria [label="influences", style=dashed];
+  unknown      -> duke_merania [label="influences", style=dashed];
+
+  heinrich_v_a -> berengar [label="sired"];
+}
